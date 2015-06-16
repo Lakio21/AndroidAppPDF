@@ -2,10 +2,11 @@ package com.inc.lakio.androidapppdf.Controller;
 
 import com.inc.lakio.androidapppdf.Model.Planning;
 import com.inc.lakio.androidapppdf.Model.Representation;
+import com.inc.lakio.androidapppdf.Model.Show;
 import com.inc.lakio.androidapppdf.Model.User;
+
 import java.util.ArrayList;
 import java.util.Date;
-
 
 /**
  * Created by Lakio on 15/06/2015.
@@ -16,15 +17,15 @@ public class PlanningController
     private XmlStream _xmlStream;
     private RequestManager _requestManger;
 
-    public String saveCustomPlanning(ArrayList<Representation> shows)
+    public String saveCustomPlanning(ArrayList<Representation> representations)
     {
         String result = "";
         try
         {
             Planning planning = new Planning();
-            planning.setRepresentationList(shows);
-            planning.setStartAt(shows.get(1).getSchedule());
-            planning.setEndAt(shows.get(shows.size() - 1)
+            planning.setRepresentationList(representations);
+            planning.setStartAt(representations.get(1).getSchedule());
+            planning.setEndAt(representations.get(representations.size() - 1)
                     .getSchedule());
             planning.setLoginUser(User.getInstance().getLogin());
             _jsonParser = new JsonParser();
@@ -59,7 +60,7 @@ public class PlanningController
     {
         _requestManger = new RequestManager();
         _jsonParser = new JsonParser();
-
-        return null;
+        String s = _requestManger.post("/planning/", _jsonParser.parsePlanningInfoToJson(start,end,nBPause,tempsRepas));
+        return _jsonParser.parseToPlanning(s);
     }
 }

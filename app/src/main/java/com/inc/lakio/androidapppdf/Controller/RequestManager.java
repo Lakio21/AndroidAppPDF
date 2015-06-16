@@ -56,7 +56,7 @@ public class RequestManager
         return reponse;
     }
 
-    public void post(String urlString, String jsonParams)
+    public String post(String urlString, String jsonParams)
     {
         try
         {
@@ -83,6 +83,7 @@ public class RequestManager
         {
 
         }
+        return "";
 
     }
 }

@@ -17,7 +17,7 @@ public class MainController {
 
     RequestManager _requestManager;
     JsonParser _jsonParser;
-    PlanningController planningController;
+    PlanningController _planningControler;
 
     ArrayList<Show> showsArrayList;
 
@@ -40,16 +40,16 @@ public class MainController {
 
     public Planning getCustomPlanning ()
     {
-        planningController = new PlanningController();
-        Planning p = planningController.getSavedPlanning();
+        _planningControler = new PlanningController();
+        Planning p = _planningControler.getSavedPlanning();
 
         return p;
     }
 
-    public Boolean setCustomPlanning(ArrayList<Representation> shows)
+    public Boolean setCustomPlanning(ArrayList<Representation> representations)
     {
-        planningController = new PlanningController();
-        String result = planningController.saveCustomPlanning(shows);
+        _planningControler = new PlanningController();
+        String result = _planningControler.saveCustomPlanning(representations);
         if (result.equals("")) {
             return false;
         }
@@ -79,17 +79,13 @@ public class MainController {
             type = "shop";
         }
 
-        //_requestManager.sendVote(_jsonParser.parseVoteToJson(entity.getId(),type, vote));
+        _requestManager.post("/vote", _jsonParser.parseVoteToJson(entity.getId(), type, vote));
     }
 
     public Planning generateBestPlanning(Date start,Date end, int nBPause, int tempsRepas)
     {
-        /*
-        json
-        http
-
-         */
-        return null;
+        _planningControler = new PlanningController();
+        return  _planningControler.getBestPlanning(start,end,nBPause,tempsRepas);
     }
 
 }

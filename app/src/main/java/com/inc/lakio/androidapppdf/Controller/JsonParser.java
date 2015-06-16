@@ -16,6 +16,27 @@ import java.util.Date;
  */
 public class JsonParser {
 
+    public String parsePlanningInfoToJson(Date start,Date end, int nBPause, int pauseRepas)
+    {
+        JSONObject obj = new JSONObject();
+
+        try
+        {
+            obj.put("startSchedule", start.getTime());
+            obj.put("endSchedule", end.getTime());
+            obj.put("nbPause", nBPause);
+            obj.put("pauseRepas",pauseRepas);
+
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
+        return obj.toString();
+
+    }
+
     public ArrayList<Show> parseToShows(String jsonString) {
         ArrayList<Show> resultList = new ArrayList<>();
         ArrayList<Representation> representationList = new ArrayList<>();
