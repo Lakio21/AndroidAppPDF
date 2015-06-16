@@ -1,0 +1,151 @@
+package com.inc.lakio.androidapppdf.Controller;
+
+import com.inc.lakio.androidapppdf.Model.Planning;
+import com.inc.lakio.androidapppdf.Model.Representation;
+import com.inc.lakio.androidapppdf.Model.Show;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+/**
+ * Created by Lakio on 15/06/2015.
+ */
+public class JsonParser {
+
+    public ArrayList<Show> parseToShows(String jsonString) {
+        ArrayList<Show> resultList = new ArrayList<>();
+        ArrayList<Representation> representationList = new ArrayList<>();
+
+        JSONArray json = null;
+
+        try {
+
+            json = new JSONArray(jsonString);
+
+            for (int i = 0; i < json.length(); i++) {
+                JSONObject item = json.getJSONObject(i);
+                Show show = new Show();
+                show.setId(item.getInt("id"));
+                show.setName(item.getString("name"));
+                show.setDescription(item.getString("description"));
+                show.setAverageNote(item.getDouble("averageNote"));
+                show.setTotalVote(item.getInt("totalVote"));
+                show.setLocationTag(item.getString("locationTag"));
+                show.setLongitude(item.getDouble("Longitude"));
+                show.setLatitude(item.getDouble("Latitude"));
+
+                Date date = new Date();
+                date.setTime(item.getLong("duration"));
+                show.setDuration(date);
+
+
+                JSONArray schedules = new JSONArray(item.getString("schedules"));
+
+                for (int j = 0; j < schedules.length(); j++) {
+                    JSONObject obj = schedules.getJSONObject(j);
+                    Representation representation = new Representation();
+                    Date d = new Date();
+                    d.setTime(obj.getLong("representationSchedule"));
+                    representation.setIdShow(show.getId());
+                    representation.setSchedule(d);
+                    representationList.add(representation);
+                }
+
+                show.setSchedules(representationList);
+
+                resultList.add(show);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return resultList;
+    }
+
+    public Planning parseToPlanning(String jsonString) {
+        Planning planning = new Planning();
+
+        JSONArray json = null;
+
+        try {
+
+            json = new JSONArray(jsonString);
+
+            for (int i = 0; i < json.length(); i++) {
+                JSONObject item = json.getJSONObject(i);
+
+                planning.setId(item.getInt("id"));
+
+                Date d = new Date();
+                d.setTime(item.getLong("startAt"));
+                planning.setStartAt(d);
+
+                d.setTime(item.getLong("endAt"));
+                planning.setEndAt(d);
+
+                planning.setRepresentationList(parseToRepresentation(item.getString("representationList")));
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return planning;
+    }
+
+    public ArrayList<Representation> parseToRepresentation(String _jsonString)
+    {
+        ArrayList<Representation> resultList = new ArrayList<>();
+        JSONArray json = null;
+
+        try
+        {
+            json = new JSONArray(_jsonString);
+            for (int i = 0; i < json.length(); i++)
+            {
+                JSONObject item = json.getJSONObject(i);
+                Representation representation = new Representation();
+                representation.setIdShow(item.getInt("idShow"));
+                Date d = new Date();
+                d.setTime(item.getLong("schedule"));
+                resultList.add(representation);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return resultList;
+    }
+
+    public String parseVoteToJson(int id, String type, int vote) {
+
+        JSONObject obj = new JSONObject();
+
+        try
+        {
+            obj.put("id", id);
+            obj.put("vote", vote);
+            obj.put("type", type);
+
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
+        return obj.toString();
+    }
+
+    public String parsePlanningToJson(Planning planing)
+    {
+        return "";
+    }
+}

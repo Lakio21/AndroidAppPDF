@@ -5,6 +5,17 @@
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
 
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="title_activity_stub"></string>
+    <string name="title_activity_global_planning"></string>
+    <string name="title_activity_spectacles"></string>
+    <string name="title_activity_services"></string>
+    <string name="title_activity_partage"></string>
+    <string name="title_activity_divertissement"></string>
+    <string name="title_activity_planning_creation">PlanningCreation</string>
+    <string name="title_activity_planning_view">PlanningView</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
