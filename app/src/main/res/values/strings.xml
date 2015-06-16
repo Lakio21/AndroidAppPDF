@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidAppPDF</string>
+    <string name="app_name"></string>
 
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
@@ -13,8 +13,8 @@
     <string name="title_activity_services"></string>
     <string name="title_activity_partage"></string>
     <string name="title_activity_divertissement"></string>
-    <string name="title_activity_planning_creation">PlanningCreation</string>
-    <string name="title_activity_planning_view">PlanningView</string>
+    <string name="title_activity_planning_creation"></string>
+    <string name="title_activity_planning_view"></string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

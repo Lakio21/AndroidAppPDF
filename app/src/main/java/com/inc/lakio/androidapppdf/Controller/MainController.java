@@ -2,6 +2,7 @@ package com.inc.lakio.androidapppdf.Controller;
 
 import com.inc.lakio.androidapppdf.Model.Entity;
 import com.inc.lakio.androidapppdf.Model.Planning;
+import com.inc.lakio.androidapppdf.Model.Representation;
 import com.inc.lakio.androidapppdf.Model.Restaurant;
 import com.inc.lakio.androidapppdf.Model.Shop;
 import com.inc.lakio.androidapppdf.Model.Show;
@@ -45,7 +46,7 @@ public class MainController {
         return p;
     }
 
-    public Boolean setCustomPlanning(ArrayList<Show> shows)
+    public Boolean setCustomPlanning(ArrayList<Representation> shows)
     {
         planningController = new PlanningController();
         String result = planningController.saveCustomPlanning(shows);
@@ -78,7 +79,7 @@ public class MainController {
             type = "shop";
         }
 
-        _requestManager.sendVote(_jsonParser.parseVoteToJson(entity.getId(),type, vote));
+        //_requestManager.sendVote(_jsonParser.parseVoteToJson(entity.getId(),type, vote));
     }
 
     public Planning generateBestPlanning(Date start,Date end, int nBPause, int tempsRepas)

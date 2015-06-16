@@ -1,25 +1,111 @@
 <!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/drawer_layout"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <!-- As the main content view, the view below consumes the entire
          space available using match_parent in both dimensions. -->
-    <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <!-- android:layout_gravity="start" tells DrawerLayout to treat
-         this as a sliding drawer on the left side for left-to-right
-         languages and on the right side for right-to-left languages.
-         If you're not building against API 17 or higher, use
-         android:layout_gravity="left" instead. -->
-    <!-- The drawer is given a fixed width in dp and extends the full height of
-         the container. -->
-    <fragment android:id="@+id/navigation_drawer"
-        android:layout_width="@dimen/navigation_drawer_width" android:layout_height="match_parent"
-        android:layout_gravity="start"
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Le Puy Du Fou"
+            android:textColor="@color/titleColor"
+            android:textSize="@dimen/title_main_size" />
+
+        <Button
+            android:id="@+id/btnPlanning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="69dp"
+            android:width="300dp"
+            android:background="@color/buttonBackgroudColor"
+            android:onClick="onClickPlanning"
+            android:text="Planning"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnSpectacles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnPlanning"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:width="300dp"
+            android:background="@color/buttonBackgroudColor"
+            android:onClick="onClickSpectacles"
+            android:text="Spectacles"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnServices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnSpectacles"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:width="300dp"
+            android:background="@color/buttonBackgroudColor"
+            android:onClick="onClickServices"
+            android:text="Services"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnDivertissement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnServices"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:width="300dp"
+            android:background="@color/buttonBackgroudColor"
+            android:onClick="onClickDivertissement"
+            android:text="Divertissement"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnPartage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnDivertissement"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:width="300dp"
+            android:background="@color/buttonBackgroudColor"
+            android:onClick="onClickPartage"
+            android:text="Partage"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+    <fragment
+        android:id="@+id/navigation_drawer"
         android:name="com.inc.lakio.androidapppdf.NavigationDrawerFragment"
+        android:layout_width="@dimen/navigation_drawer_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
         tools:layout="@layout/fragment_navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

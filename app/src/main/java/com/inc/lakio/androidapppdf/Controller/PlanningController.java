@@ -60,5 +60,6 @@ public class PlanningController
         _requestManger = new RequestManager();
         _jsonParser = new JsonParser();
 
+        return null;
     }
 }
