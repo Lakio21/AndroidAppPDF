@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:text="Le Puy Du Fou"
+            android:text="Puy Du Fou"
             android:textColor="@color/titleColor"
             android:textSize="@dimen/title_main_size" />
 

@@ -36,6 +36,14 @@
             android:name=".Services"
             android:label="@string/title_activity_services" >
         </activity>
+        <activity
+            android:name=".PlanningView"
+            android:label="@string/title_activity_planning_view" >
+        </activity>
+        <activity
+            android:name=".PlanningCreate"
+            android:label="@string/title_activity_planning_create" >
+        </activity>
     </application>
 
 </manifest>

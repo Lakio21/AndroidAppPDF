@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Puy Du Fou</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_section1">Accueil</string>
+    <string name="title_section2">Planning</string>
+    <string name="title_section3">Spectacles</string>
+    <string name="title_section4">Services</string>
+    <string name="title_section5">Divertissement</string>
+    <string name="title_section6">Partage</string>
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -24,4 +27,5 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_planning">Planning</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_planning_create">PlanningCreate</string>
 </resources>
