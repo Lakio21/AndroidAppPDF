@@ -18,6 +18,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.inc.lakio.androidapppdf.Controller.ActivitiesController;
+
 
 public class MainActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -103,6 +105,31 @@ public class MainActivity extends Activity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClickPlanning(View view)
+    {
+        ActivitiesController.navigate(this, Planning.class);
+    }
+
+    public void onClickSpectacles(View view)
+    {
+        ActivitiesController.navigate(this, Spectacles.class);
+    }
+
+    public void onClickServices(View view)
+    {
+        ActivitiesController.navigate(this, Services.class);
+    }
+
+    public void onClickDivertissement(View view)
+    {
+        ActivitiesController.navigate(this, Divertissement.class);
+    }
+
+    public void onClickPartage(View view)
+    {
+        ActivitiesController.navigate(this, Partage.class);
     }
 
     /**

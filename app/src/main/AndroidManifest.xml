@@ -16,6 +16,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Planning"
+            android:label="@string/title_activity_planning" >
+        </activity>
+        <activity
+            android:name=".Spectacles"
+            android:label="@string/title_activity_spectacles" >
+        </activity>
+        <activity
+            android:name=".Divertissement"
+            android:label="@string/title_activity_divertissement" >
+        </activity>
+        <activity
+            android:name=".Partage"
+            android:label="@string/title_activity_partage" >
+        </activity>
+        <activity
+            android:name=".Services"
+            android:label="@string/title_activity_services" >
+        </activity>
     </application>
 
 </manifest>
