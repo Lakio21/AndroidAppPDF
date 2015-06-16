@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
 
 
 public class Services extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -37,7 +38,26 @@ public class Services extends Activity implements NavigationDrawerFragment.Navig
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClickRadioButton(View view) {
+    public void onClickRadioButton(View view)
+    {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.rBtnBoutique:
+                if (checked) {
+
+                }
+
+                break;
+            case R.id.rBtnRestaurant:
+                if (checked) {
+
+                }
+
+                break;
+        }
     }
 
     @Override
