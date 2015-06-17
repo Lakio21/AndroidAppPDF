@@ -5,11 +5,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 import com.inc.lakio.androidapppdf.Controller.ActivitiesController;
+import com.inc.lakio.androidapppdf.Controller.MainController;
+
+import java.util.ArrayList;
 
 
 public class Planning extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,4 +57,6 @@ public class Planning extends Activity implements NavigationDrawerFragment.Navig
     public void onNavigationDrawerItemSelected(int position) {
 
     }
+
+
 }

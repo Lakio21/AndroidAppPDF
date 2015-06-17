@@ -4,23 +4,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
-import com.inc.lakio.androidapppdf.Controller.ActivitiesController;
 
 
-public class PlanningCreate extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
+public class PlanningCreateDetail extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_planning_create);
+        setContentView(R.layout.activity_planning_create_detail);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_planning_create, menu);
+        getMenuInflater().inflate(R.menu.menu_planning_create_detail, menu);
         return true;
     }
 
@@ -42,10 +39,5 @@ public class PlanningCreate extends Activity implements NavigationDrawerFragment
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 
-    }
-
-    public void onClickCreatePlanning(View view)
-    {
-        ActivitiesController.navigate(this, PlanningCreateDetail.class);
     }
 }

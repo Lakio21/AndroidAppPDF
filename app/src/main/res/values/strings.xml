@@ -28,4 +28,5 @@
     <string name="title_activity_planning">Planning</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_planning_create">PlanningCreate</string>
+    <string name="title_activity_planning_create_detail">PlanningCreateDetail</string>
 </resources>

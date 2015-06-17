@@ -68,11 +68,9 @@ public class JsonParser {
 
                 for (int j = 0; j < schedules.length(); j++) {
                     JSONObject obj = schedules.getJSONObject(j);
-                    Representation representation = new Representation();
                     Date d = new Date();
                     d.setTime(obj.getLong("representationSchedule"));
-                    representation.setIdShow(show.getId());
-                    representation.setSchedule(d);
+                    Representation representation = new Representation(show.getId(),d);
                     representationList.add(representation);
                 }
 
@@ -131,10 +129,11 @@ public class JsonParser {
             for (int i = 0; i < json.length(); i++)
             {
                 JSONObject item = json.getJSONObject(i);
-                Representation representation = new Representation();
-                representation.setIdShow(item.getInt("idShow"));
+
                 Date d = new Date();
                 d.setTime(item.getLong("schedule"));
+                Representation representation = new Representation(item.getInt("idShow"), d);
+
                 resultList.add(representation);
             }
         }

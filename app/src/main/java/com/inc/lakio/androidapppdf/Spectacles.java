@@ -4,16 +4,27 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
+import com.inc.lakio.androidapppdf.Controller.MainController;
+import com.inc.lakio.androidapppdf.Model.Representation;
+import com.inc.lakio.androidapppdf.Model.Show;
 import com.inc.lakio.androidapppdf.R;
 
-public class Spectacles extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks
-        {
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Spectacles extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    MainController mainController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spectacles);
+
+        refreshPlanningList();
     }
 
     @Override
@@ -38,8 +49,33 @@ public class Spectacles extends Activity implements NavigationDrawerFragment.Nav
         return super.onOptionsItemSelected(item);
     }
 
-            @Override
-            public void onNavigationDrawerItemSelected(int position) {
+    @Override
+    public void onNavigationDrawerItemSelected(int position) {
 
-            }
-        }
+    }
+
+    public void refreshPlanningList()
+    {
+        mainController = new MainController();
+
+        //Test de fonctionnement
+        /*ArrayList<Show> truc = new ArrayList<>();
+        Show machin = new Show();
+        machin.setName("truc");
+        Date chose = new Date();
+        chose.setTime(1434528174);
+        ArrayList<Representation> bidulle = new ArrayList<>();
+        bidulle.add(new Representation(machin.getId(),chose));
+
+        machin.setSchedules(bidulle);
+
+        truc.add(machin);*/
+
+        ListShowsAdapter adapter = new ListShowsAdapter(this, mainController.getGlobalPlanning());
+        //ListShowsAdapter adapter = new ListShowsAdapter(this, truc);
+
+        ListView list = (ListView)findViewById(R.id.listPlanning);
+        list.setAdapter(adapter);
+
+    }
+}

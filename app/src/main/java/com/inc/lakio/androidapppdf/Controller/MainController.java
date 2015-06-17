@@ -18,6 +18,7 @@ public class MainController {
     RequestManager _requestManager;
     JsonParser _jsonParser;
     PlanningController _planningControler;
+    String url = "http://10.131.128.123:8080/webservice/webapi/";
 
     ArrayList<Show> showsArrayList;
 
@@ -31,7 +32,8 @@ public class MainController {
     {
         showsArrayList = new ArrayList<Show>();
 
-        String result = _requestManager.get("/shows");
+        //String result = _requestManager.get(url+"myresource");
+        String result = _requestManager.GetSomething(url+"myresource");
 
         showsArrayList = _jsonParser.parseToShows(result);
 

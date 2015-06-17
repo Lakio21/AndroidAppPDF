@@ -14,22 +14,31 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:text="Créer son planning"
             android:textColor="@color/titleColor"
-            android:textSize="45dp" />
-
-        <Button
-            android:layout_below="@+id/tvTitle"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:textSize="@dimen/title_second_menu_size" />
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/tvTitle"
+            android:layout_marginTop="70dp"
             android:choiceMode="singleChoice" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@id/tvTitle"
+            android:layout_marginBottom="-65dp"
+            android:layout_marginLeft="20dp"
+            android:onClick="onClickCreatePlanning"
+            android:background="@drawable/circle"
+            android:src="@drawable/ic_plus" />
+
 
     </RelativeLayout>
 

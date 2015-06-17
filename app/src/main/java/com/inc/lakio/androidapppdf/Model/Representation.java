@@ -9,6 +9,12 @@ public class Representation {
     private int _idShow;
     private Date _schedule;
 
+    public Representation(int id, Date d)
+    {
+        _idShow = id;
+        _schedule = d;
+    }
+
     public Date getSchedule() {
         return _schedule;
     }
