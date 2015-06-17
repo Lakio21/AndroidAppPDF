@@ -7,15 +7,15 @@ import java.util.Date;
  * Created by Carn on 15/06/2015.
  */
 public class Show extends Entity{
-    private Date _duration;
+    private long _duration;
     private ArrayList<Representation> _schedules;
 
 
-    public Date getDuration() {
+    public long getDuration() {
         return _duration;
     }
 
-    public void setDuration(Date _duration) {
+    public void setDuration(long _duration) {
         this._duration = _duration;
     }
 
