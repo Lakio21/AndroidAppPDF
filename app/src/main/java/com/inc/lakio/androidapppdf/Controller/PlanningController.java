@@ -7,10 +7,12 @@ import com.inc.lakio.androidapppdf.Model.Representation;
 import com.inc.lakio.androidapppdf.Model.Show;
 import com.inc.lakio.androidapppdf.Model.User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,7 +21,6 @@ import java.util.concurrent.TimeUnit;
 public class PlanningController {
     private JsonParser _jsonParser;
     private XmlStream _xmlStream;
-    private RequestManager _requestManger;
 
     public String saveCustomPlanning(ArrayList<Representation> representations) {
         String result = "";
@@ -53,9 +54,18 @@ public class PlanningController {
     }
 
     public Planning getBestPlanning(Date start, Date end, int nBPause, int tempsRepas) {
-        _requestManger = new RequestManager();
+
         _jsonParser = new JsonParser();
-        String s = _requestManger.post("/planning/", _jsonParser.parsePlanningInfoToJson(start, end, nBPause, tempsRepas));
+        String s = null;
+        try {
+            s = RequestManager.getInstance().post("/planning/", _jsonParser.parsePlanningInfoToJson(start, end, nBPause, tempsRepas));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return _jsonParser.parseToPlanning(s);
     }
 

@@ -14,6 +14,7 @@ import com.inc.lakio.androidapppdf.R;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class Spectacles extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -54,8 +55,8 @@ public class Spectacles extends Activity implements NavigationDrawerFragment.Nav
 
     }
 
-    public void refreshPlanningList()
-    {
+    public void refreshPlanningList() {
+
         mainController = new MainController();
 
         //Test de fonctionnement

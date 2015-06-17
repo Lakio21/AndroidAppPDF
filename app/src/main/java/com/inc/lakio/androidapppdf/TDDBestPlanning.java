@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class TDDBestPlanning {
 
-    public string createBestPlanning(Long startDate, Long endDate, int nBpause, int pauseRepas)
+   /* public string createBestPlanning(Long startDate, Long endDate, int nBpause, int pauseRepas)
     {
         Planning result = new Planning();
         ArrayList<Show> shows = new ArrayList<>();
@@ -40,5 +40,5 @@ public class TDDBestPlanning {
         }
 
 
-    }
+    }*/
 }

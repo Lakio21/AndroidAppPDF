@@ -12,13 +12,17 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.util.Dictionary;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 
@@ -26,96 +30,107 @@ import org.json.JSONException;
 /**
  * Created by Lakio on 15/06/2015.
  */
-public class RequestManager {
+public final class RequestManager {
 
-    final private String _url = "";
+    private String urlString = "http://10.131.128.123:8080/webservice/webapi/";
 
-    public String get(String urlString) {
-        String reponse = "";
+    private static volatile RequestManager instance = null;
 
-        URL _url = null;
+    private HttpClient httpClient;
+    private HttpGet httpGet;
+    private HttpPost httpPost;
 
-        try {
-
-            _url = new URL(urlString);
-
-            HttpURLConnection cnx = (HttpURLConnection) _url.openConnection();
-
-            cnx.setConnectTimeout(10000);
-
-            InputStream reader = cnx.getInputStream();
-
-            reponse = IOUtils.toString(reader, "UTF-8");
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return reponse;
+    private RequestManager()
+    {
+        httpClient = new DefaultHttpClient();
+        httpGet = new HttpGet();
+        httpPost = new HttpPost();
     }
 
-    public String GetSomething(String urlString)
-    {
+    private class AsyncGet extends AsyncTask<String, Void, String>{
 
-        String url = urlString;
-        BufferedReader inStream = null;
-        String result = "";
-
-        try {
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpResponse response = httpClient.execute(new HttpGet(url));
-            inStream = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-
-            StringBuffer buffer = new StringBuffer("");
-            String line = "";
-            String NL = System.getProperty("line.separator");
-            while ((line = inStream.readLine()) != null) {
-                buffer.append(line + NL);
-            }
-            inStream.close();
-
-            result = buffer.toString();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            if (inStream != null) {
+        @Override
+        protected String doInBackground(String... params) {
+            if(params.length > 0) {
+                httpGet.setURI(URI.create(params[0]));
                 try {
-                    inStream.close();
+                    HttpResponse httpResponse = httpClient.execute(httpGet);
+                    return getStringFromResponse(httpResponse);
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    return e.getMessage();
+                }
+            }
+            return null;
+        }
+    }
+
+    private class AsyncPost extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+            if(params.length > 1) {
+                try {
+                    httpPost.setURI(URI.create(params[0]));
+                    httpPost.setEntity(new StringEntity(params[1]));
+                    HttpResponse httpResponse = httpClient.execute(httpPost);
+
+                    return getStringFromResponse(httpResponse);
+                }
+                catch (Exception ex)
+                {
+                    return ex.getMessage();
+                }
+            }
+            return null;
+        }
+    }
+
+    public final static RequestManager getInstance(){
+        if(RequestManager.instance == null){
+            synchronized (RequestManager.class){
+                if(RequestManager.instance == null){
+                    RequestManager.instance = new RequestManager();
                 }
             }
         }
-
-        return result;
+        return RequestManager.instance;
     }
 
-    public String post(String urlString, String jsonParams) {
-        try {
-            String postParameters = jsonParams;
-
-            URL urlToRequest = new URL(urlString);
-            HttpURLConnection urlConnection = (HttpURLConnection) urlToRequest.openConnection();
-
-            urlConnection.setDoOutput(true);
-            urlConnection.setInstanceFollowRedirects(false);
-
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            urlConnection.setRequestProperty("charset", "utf-8");
-            urlConnection.setUseCaches(false);
-
-            try (OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream())) {
-                wr.write(postParameters);
-            }
-
-        } catch (Exception e) {
-
+    public String get(String url) throws IOException, ExecutionException, InterruptedException {
+        AsyncGet asyncGet = new AsyncGet();
+        String result = asyncGet.execute(url).get();
+        if(result == null)
+        {
+            return "error";
         }
-        return "";
+        else
+        {
+            return result;
+        }
+    }
 
+    public String post(String url, String json) throws IOException, ExecutionException, InterruptedException {
+        AsyncPost asyncPost = new AsyncPost();
+        String result = asyncPost.execute(url, json).get();
+        if(result == null)
+        {
+            return "error";
+        }
+        else
+        {
+            return result;
+        }
+    }
+
+    private static String getStringFromResponse(HttpResponse response) throws IOException {
+        String result = "";
+        String line;
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+        while ((line = bufferedReader.readLine()) != null)
+        {
+            result += line;
+        }
+        return result;
     }
 }
