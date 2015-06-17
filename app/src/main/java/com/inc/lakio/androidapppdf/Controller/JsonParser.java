@@ -16,20 +16,16 @@ import java.util.Date;
  */
 public class JsonParser {
 
-    public String parsePlanningInfoToJson(Date start,Date end, int nBPause, int pauseRepas)
-    {
+    public String parsePlanningInfoToJson(Date start, Date end, int nBPause, int pauseRepas) {
         JSONObject obj = new JSONObject();
 
-        try
-        {
+        try {
             obj.put("startSchedule", start.getTime());
             obj.put("endSchedule", end.getTime());
             obj.put("nbPause", nBPause);
-            obj.put("pauseRepas",pauseRepas);
+            obj.put("pauseRepas", pauseRepas);
 
-        }
-        catch (JSONException e)
-        {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -43,44 +39,49 @@ public class JsonParser {
 
         JSONArray json = null;
 
-        try {
+        if (jsonString != null) {
 
-            json = new JSONArray(jsonString);
+            try {
 
-            for (int i = 0; i < json.length(); i++) {
-                JSONObject item = json.getJSONObject(i);
-                Show show = new Show();
-                show.setId(item.getInt("id"));
-                show.setName(item.getString("name"));
-                show.setDescription(item.getString("description"));
-                show.setAverageNote(item.getDouble("averageNote"));
-                show.setTotalVote(item.getInt("totalVote"));
-                JSONObject t = new JSONObject(item.getString("location"));
+                json = new JSONArray(jsonString);
 
-                show.setLocationTag(t.getString("tag"));
-                show.setLongitude(t.getDouble("longitude"));
-                show.setLatitude(t.getDouble("latitude"));
+                for (int i = 0; i < json.length(); i++) {
+                    JSONObject item = json.getJSONObject(i);
+                    Show show = new Show();
+                    show.setId(item.getInt("id"));
+                    show.setName(item.getString("name"));
+                    show.setDescription(item.getString("description"));
+                    show.setAverageNote(item.getDouble("averageNote"));
+                    show.setTotalVote(item.getInt("totalVote"));
+                    JSONObject t = new JSONObject(item.getString("location"));
 
-                show.setDuration(item.getLong("duration"));
+                    show.setLocationTag(t.getString("tag"));
+                    show.setLongitude(t.getDouble("longitude"));
+                    show.setLatitude(t.getDouble("latitude"));
+
+                    show.setDuration(item.getLong("duration"));
 
 
-                JSONArray schedules = new JSONArray(item.getString("schedules"));
+                    JSONArray schedules = new JSONArray(item.getString("schedules"));
 
-                for (int j = 0; j < schedules.length(); j++) {
-                    JSONObject obj = schedules.getJSONObject(j);
-                    Date d = new Date();
-                    d.setTime(obj.getLong("representationSchedule"));
-                    Representation representation = new Representation(show.getId(),d);
-                    representationList.add(representation);
+                    for (int j = 0; j < schedules.length(); j++) {
+                        JSONObject obj = schedules.getJSONObject(j);
+                        Date d = new Date();
+                        d.setTime(obj.getLong("representationSchedule"));
+                        Representation representation = new Representation(show.getId(), d);
+                        representationList.add(representation);
+                    }
+
+                    show.setSchedules(representationList);
+
+                    resultList.add(show);
                 }
 
-                show.setSchedules(representationList);
-
-                resultList.add(show);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } else {
+            return null;
         }
 
         return resultList;
@@ -118,16 +119,13 @@ public class JsonParser {
         return planning;
     }
 
-    public ArrayList<Representation> parseToRepresentation(String _jsonString)
-    {
+    public ArrayList<Representation> parseToRepresentation(String _jsonString) {
         ArrayList<Representation> resultList = new ArrayList<>();
         JSONArray json = null;
 
-        try
-        {
+        try {
             json = new JSONArray(_jsonString);
-            for (int i = 0; i < json.length(); i++)
-            {
+            for (int i = 0; i < json.length(); i++) {
                 JSONObject item = json.getJSONObject(i);
 
                 Date d = new Date();
@@ -136,9 +134,7 @@ public class JsonParser {
 
                 resultList.add(representation);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -149,23 +145,19 @@ public class JsonParser {
 
         JSONObject obj = new JSONObject();
 
-        try
-        {
+        try {
             obj.put("id", id);
             obj.put("vote", vote);
             obj.put("type", type);
 
-        }
-        catch (JSONException e)
-        {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
         return obj.toString();
     }
 
-    public String parsePlanningToJson(Planning planing)
-    {
+    public String parsePlanningToJson(Planning planing) {
         return "";
     }
 }

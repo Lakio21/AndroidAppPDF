@@ -29,12 +29,12 @@
             android:layout_marginLeft="10dp"
             android:text="Spectacles :"
             android:textColor="@color/titleColor"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <ListView
             android:id="@+id/listSpectacle"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="125dp"
             android:layout_below="@+id/tvTitleSpectacle"
             android:layout_marginTop="10dp"
             android:choiceMode="singleChoice" />
@@ -48,12 +48,12 @@
             android:layout_marginLeft="10dp"
             android:text="Horaires :"
             android:textColor="@color/titleColor"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <ListView
             android:id="@+id/listHoraires"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="125dp"
             android:layout_below="@+id/tvTitleHoraire"
             android:layout_marginTop="10dp"
             android:choiceMode="singleChoice" />
@@ -67,10 +67,10 @@
             android:layout_marginTop="10dp"
             android:width="300dp"
             android:background="@color/buttonBackgroudColor"
-            android:onClick="onClickPartage"
+            android:onClick="onClickAddSpectacle"
             android:text="Ajouter"
             android:textColor="@color/buttonTextColor"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

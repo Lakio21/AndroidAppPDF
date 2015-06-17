@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class PlanningCreateDetail extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
@@ -32,12 +33,20 @@ public class PlanningCreateDetail extends Activity implements NavigationDrawerFr
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.listSpectacle) {
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+    }
+
+    public void onClickAddSpectacle(View view)
+    {
 
     }
 }

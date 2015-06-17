@@ -28,7 +28,11 @@ public class ListShowsAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return shows.size();
+        if(shows != null) {
+            return shows.size();
+        }else{
+            return 0;
+        }
     }
 
     @Override
@@ -57,15 +61,23 @@ public class ListShowsAdapter extends BaseAdapter {
         TextView text2 = twoLineListItem.getText2();
         String schedules = "";
 
-        for(int i = 0; i < shows.get(position).getSchedules().size(); i++)
+        if (shows != null)
         {
-            schedules += shows.get(position).getSchedules().get(i).getSchedule().getHours() + " - ";
+            for (int i = 0; i < shows.get(position).getSchedules().size(); i++) {
+                schedules += shows.get(position).getSchedules().get(i).getSchedule().getHours() + " - ";
+            }
+
+            schedules = schedules.substring(1, schedules.length() - 3);
+
+            text1.setText(shows.get(position).getName() + " - " + shows.get(position).getLocationTag());
+            text2.setText(schedules + " - Durée : " + shows.get(position).getDuration() + " min");
+        }
+        else
+        {
+            text1.setText("Impossible de remplir la liste");
+            text2.setText("Réessayer plus tard");
         }
 
-        schedules = schedules.substring(1, schedules.length()-3);
-
-        text1.setText(shows.get(position).getName() + " - " + shows.get(position).getLocationTag());
-        text2.setText(schedules + " - Durée : " + shows.get(position).getDuration() + " min");
 
         return twoLineListItem;
     }

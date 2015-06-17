@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,28 +20,28 @@
         </activity>
         <activity
             android:name=".Planning"
-            android:label="@string/title_activity_planning"></activity>
+            android:label="@string/title_activity_planning" />
         <activity
             android:name=".Spectacles"
-            android:label="@string/title_activity_spectacles"></activity>
+            android:label="@string/title_activity_spectacles" />
         <activity
             android:name=".Divertissement"
-            android:label="@string/title_activity_divertissement"></activity>
+            android:label="@string/title_activity_divertissement" />
         <activity
             android:name=".Partage"
-            android:label="@string/title_activity_partage"></activity>
+            android:label="@string/title_activity_partage" />
         <activity
             android:name=".Services"
-            android:label="@string/title_activity_services"></activity>
+            android:label="@string/title_activity_services" />
         <activity
             android:name=".PlanningView"
-            android:label="@string/title_activity_planning_view"></activity>
+            android:label="@string/title_activity_planning_view" />
         <activity
             android:name=".PlanningCreate"
-            android:label="@string/title_activity_planning_create"></activity>
+            android:label="@string/title_activity_planning_create" />
         <activity
             android:name=".PlanningCreateDetail"
-            android:label="@string/title_activity_planning_create_detail"></activity>
+            android:label="@string/title_activity_planning_create_detail" />
     </application>
 
 </manifest>

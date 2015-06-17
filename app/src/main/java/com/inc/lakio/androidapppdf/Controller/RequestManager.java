@@ -22,8 +22,12 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 
 
@@ -40,22 +44,27 @@ public final class RequestManager {
     private HttpGet httpGet;
     private HttpPost httpPost;
 
-    private RequestManager()
-    {
+    private RequestManager() {
         httpClient = new DefaultHttpClient();
         httpGet = new HttpGet();
         httpPost = new HttpPost();
+        HttpParams httpParameters = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(httpParameters, 4000);
+        HttpConnectionParams.setSoTimeout(httpParameters, 6000);
+
     }
 
-    private class AsyncGet extends AsyncTask<String, Void, String>{
+    private class AsyncGet extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
-            if(params.length > 0) {
+            if (params.length > 0) {
                 httpGet.setURI(URI.create(params[0]));
                 try {
                     HttpResponse httpResponse = httpClient.execute(httpGet);
                     return getStringFromResponse(httpResponse);
+                } catch (ConnectTimeoutException e) {
+                    return null;
                 } catch (IOException e) {
                     return e.getMessage();
                 }
@@ -64,20 +73,20 @@ public final class RequestManager {
         }
     }
 
-    private class AsyncPost extends AsyncTask<String, Void, String>{
+    private class AsyncPost extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
-            if(params.length > 1) {
+            if (params.length > 1) {
                 try {
                     httpPost.setURI(URI.create(params[0]));
                     httpPost.setEntity(new StringEntity(params[1]));
                     HttpResponse httpResponse = httpClient.execute(httpPost);
 
                     return getStringFromResponse(httpResponse);
-                }
-                catch (Exception ex)
-                {
+                } catch (ConnectTimeoutException e) {
+                    return null;
+                } catch (Exception ex) {
                     return ex.getMessage();
                 }
             }
@@ -85,10 +94,10 @@ public final class RequestManager {
         }
     }
 
-    public final static RequestManager getInstance(){
-        if(RequestManager.instance == null){
-            synchronized (RequestManager.class){
-                if(RequestManager.instance == null){
+    public final static RequestManager getInstance() {
+        if (RequestManager.instance == null) {
+            synchronized (RequestManager.class) {
+                if (RequestManager.instance == null) {
                     RequestManager.instance = new RequestManager();
                 }
             }
@@ -98,26 +107,24 @@ public final class RequestManager {
 
     public String get(String url) throws IOException, ExecutionException, InterruptedException {
         AsyncGet asyncGet = new AsyncGet();
-        String result = asyncGet.execute(urlString+url).get();
-        if(result == null)
-        {
+        String result = asyncGet.execute(urlString + url).get();
+        if (result == null) {
             return "error";
-        }
-        else
+        } else if (result.contains("refused"))
         {
+            return null;
+        }
+        else {
             return result;
         }
     }
 
     public String post(String url, String json) throws IOException, ExecutionException, InterruptedException {
         AsyncPost asyncPost = new AsyncPost();
-        String result = asyncPost.execute(urlString+url, json).get();
-        if(result == null)
-        {
+        String result = asyncPost.execute(urlString + url, json).get();
+        if (result == null) {
             return "error";
-        }
-        else
-        {
+        } else {
             return result;
         }
     }
@@ -127,8 +134,7 @@ public final class RequestManager {
         String line;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 
-        while ((line = bufferedReader.readLine()) != null)
-        {
+        while ((line = bufferedReader.readLine()) != null) {
             result += line;
         }
         return result;

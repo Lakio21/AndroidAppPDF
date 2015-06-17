@@ -29,18 +29,12 @@ public class MainController {
 
     public ArrayList<Show> getGlobalPlanning(){
 
-        showsArrayList = new ArrayList<Show>();
-
-        //String result = _requestManager.get(url+"myresource");
+        showsArrayList = new ArrayList<>();
 
         String result = null;
         try {
             result = RequestManager.getInstance().get("shows");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -68,11 +62,7 @@ public class MainController {
         {
             try {
                 RequestManager.getInstance().post("/planning/save", result);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
+            } catch (IOException | ExecutionException | InterruptedException e) {
                 e.printStackTrace();
             }
             return true;
@@ -99,11 +89,7 @@ public class MainController {
 
         try {
             RequestManager.getInstance().post("/vote", _jsonParser.parseVoteToJson(entity.getId(), type, vote));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
     }
