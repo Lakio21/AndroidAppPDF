@@ -56,8 +56,8 @@ public class JsonParser {
                 show.setAverageNote(item.getDouble("averageNote"));
                 show.setTotalVote(item.getInt("totalVote"));
                 show.setLocationTag(item.getString("locationTag"));
-                show.setLongitude(item.getDouble("Longitude"));
-                show.setLatitude(item.getDouble("Latitude"));
+                show.setLongitude(item.getDouble("longitude"));
+                show.setLatitude(item.getDouble("latitude"));
 
                 Date date = new Date();
                 date.setTime(item.getLong("duration"));
