@@ -37,7 +37,7 @@ public class MainController {
         } catch (IOException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-
+        //result = "[{\"id\": 1,\"name\": \"Le signe du triomphe\",\"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit.\",\"averageNote\": 0,\"totalVote\": 0,\"duration\": 45,\"location\":{\"id\": 1,\"tag\": 1,\"latitude\": 175.26,\"longitude\": 52.1},\"schedulesList\":[{\"id\": 1,\"showId\": 1,\"time\": 29700},{\"id\": 2,\"showId\": 1,\"time\": 37800},{\"id\": 3,\"showId\": 1,\"time\": 55800}]}]";
         showsArrayList = _jsonParser.parseToShows(result);
 
         return showsArrayList;

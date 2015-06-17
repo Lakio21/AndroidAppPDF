@@ -11,6 +11,7 @@ import android.widget.TwoLineListItem;
 import com.inc.lakio.androidapppdf.Model.Show;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Lakio on 17/06/2015.
@@ -63,14 +64,22 @@ public class ListShowsAdapter extends BaseAdapter {
 
         if (shows != null)
         {
+            String Horaire = "";
             for (int i = 0; i < shows.get(position).getSchedules().size(); i++) {
-                schedules += shows.get(position).getSchedules().get(i).getSchedule().getHours() + " - ";
+                Calendar c = Calendar.getInstance();
+                c.setTime(shows.get(position).getSchedules().get(i).getSchedule());
+                Horaire += c.get(Calendar.HOUR_OF_DAY);
+                Horaire += ":";
+                Horaire += c.get(Calendar.MINUTE);
+                Horaire += " - ";
+                //schedules += shows.get(position).getSchedules().get(i).getSchedule().getHours() + " - ";
             }
 
-            schedules = schedules.substring(1, schedules.length() - 3);
+            //schedules = schedules.substring(1, schedules.length() - 3);
 
-            text1.setText(shows.get(position).getName() + " - " + shows.get(position).getLocationTag());
-            text2.setText(schedules + " - Durée : " + shows.get(position).getDuration() + " min");
+
+            text1.setText(shows.get(position).getName() + " - Emplacement " + shows.get(position).getLocationTag());
+            text2.setText(Horaire + " Durée : " + shows.get(position).getDuration() + " min");
         }
         else
         {

@@ -62,12 +62,12 @@ public class JsonParser {
                     show.setDuration(item.getLong("duration"));
 
 
-                    JSONArray schedules = new JSONArray(item.getString("schedules"));
+                    JSONArray schedules = new JSONArray(item.getString("schedulesList"));
 
                     for (int j = 0; j < schedules.length(); j++) {
                         JSONObject obj = schedules.getJSONObject(j);
                         Date d = new Date();
-                        d.setTime(obj.getLong("representationSchedule"));
+                        d.setTime(obj.getLong("time")*1000);
                         Representation representation = new Representation(show.getId(), d);
                         representationList.add(representation);
                     }
