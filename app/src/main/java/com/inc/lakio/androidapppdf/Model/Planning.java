@@ -45,6 +45,10 @@ public class Planning {
         this._representationList = _showList;
     }
 
+    public void setOneRepresentationList(Representation _show) {
+        this._representationList.add(_show);
+    }
+
     public String getLoginUser() {
         return _loginUser;
     }

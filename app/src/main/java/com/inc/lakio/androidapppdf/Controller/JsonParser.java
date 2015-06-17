@@ -59,9 +59,7 @@ public class JsonParser {
                 show.setLongitude(item.getDouble("longitude"));
                 show.setLatitude(item.getDouble("latitude"));
 
-                Date date = new Date();
-                date.setTime(item.getLong("duration"));
-                show.setDuration(date);
+                show.setDuration(item.getLong("duration"));
 
 
                 JSONArray schedules = new JSONArray(item.getString("schedules"));
