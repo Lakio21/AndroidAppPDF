@@ -98,7 +98,7 @@ public final class RequestManager {
 
     public String get(String url) throws IOException, ExecutionException, InterruptedException {
         AsyncGet asyncGet = new AsyncGet();
-        String result = asyncGet.execute(url).get();
+        String result = asyncGet.execute(urlString+url).get();
         if(result == null)
         {
             return "error";
@@ -111,7 +111,7 @@ public final class RequestManager {
 
     public String post(String url, String json) throws IOException, ExecutionException, InterruptedException {
         AsyncPost asyncPost = new AsyncPost();
-        String result = asyncPost.execute(url, json).get();
+        String result = asyncPost.execute(urlString+url, json).get();
         if(result == null)
         {
             return "error";

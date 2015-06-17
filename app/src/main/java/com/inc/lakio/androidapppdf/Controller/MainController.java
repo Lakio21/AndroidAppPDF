@@ -35,7 +35,7 @@ public class MainController {
 
         String result = null;
         try {
-            result = RequestManager.getInstance().get("myresource");
+            result = RequestManager.getInstance().get("shows");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

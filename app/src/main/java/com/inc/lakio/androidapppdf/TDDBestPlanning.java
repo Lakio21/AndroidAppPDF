@@ -28,7 +28,7 @@ public class TDDBestPlanning {
         boolean processEnd = false;
 
         //endregion
-        shows.getAll();
+        //shows.getAll();
 
         //region init planning
         d.setTime(startDate);
