@@ -10,7 +10,86 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Partage"
+            android:textColor="@color/titleColor"
+            android:textSize="@dimen/title_main_size" />
 
+        <TextView
+            android:id="@+id/tvInfo1"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Partagez votre expérience en famille ou entre amis avec le Puy du fou"
+            android:textColor="@color/titleColor"
+            android:textSize="25dp" />
+
+
+        <ImageButton
+            android:id="@+id/btnFacebook"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_below="@+id/tvInfo1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/btnTwitter"
+            android:background="@drawable/facebook" />
+
+        <ImageButton
+            android:id="@+id/btnTwitter"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_below="@+id/tvInfo1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/twitter" />
+
+        <ImageButton
+            android:id="@+id/btnGooglePlus"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_below="@+id/tvInfo1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/btnTwitter"
+            android:background="@drawable/googleplus" />
+
+        <TextView
+            android:id="@+id/tvInfo2"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnTwitter"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Découvrez toute son actualité sur son blog officiel"
+            android:textColor="@color/titleColor"
+            android:textSize="25dp" />
+
+        <ImageButton
+            android:id="@+id/btnBlog"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_below="@+id/tvInfo2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/blog" />
 
     </RelativeLayout>
 

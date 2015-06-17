@@ -2,6 +2,7 @@ package com.inc.lakio.androidapppdf;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -18,12 +19,21 @@ import java.util.concurrent.ExecutionException;
 
 public class Spectacles extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
+    private NavigationDrawerFragment mNavigationDrawerFragment;
     MainController mainController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spectacles);
+
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+                getFragmentManager().findFragmentById(R.id.navigation_drawer);
+
+        // Set up the drawer.
+        mNavigationDrawerFragment.setUp(
+                R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
 
         refreshPlanningList();
     }

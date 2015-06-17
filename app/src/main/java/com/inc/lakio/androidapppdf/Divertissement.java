@@ -2,16 +2,28 @@ package com.inc.lakio.androidapppdf;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class Divertissement extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+    private NavigationDrawerFragment mNavigationDrawerFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_divertissement);
+
+        mNavigationDrawerFragment = (NavigationDrawerFragment)
+                getFragmentManager().findFragmentById(R.id.navigation_drawer);
+
+        // Set up the drawer.
+        mNavigationDrawerFragment.setUp(
+                R.id.navigation_drawer,
+                (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
     @Override
@@ -38,6 +50,11 @@ public class Divertissement extends Activity implements NavigationDrawerFragment
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+    }
+
+    public void onClickNewAnecdote(View view)
+    {
 
     }
 }

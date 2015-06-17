@@ -10,7 +10,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Divertissement"
+            android:textColor="@color/titleColor"
+            android:textSize="50dp" />
 
+        <Button
+            android:id="@+id/btnNewAnecdote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="20dp"
+            android:width="300dp"
+            android:background="@color/buttonBackgroudColor"
+            android:onClick="onClickNewAnecdote"
+            android:text="Nouvelle anecdote"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvAnecdote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/btnNewAnecdote"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 
