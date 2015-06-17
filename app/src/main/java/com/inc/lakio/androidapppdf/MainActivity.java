@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.inc.lakio.androidapppdf.Controller.ActivitiesController;
+import com.inc.lakio.androidapppdf.Model.Service;
 
 
 public class MainActivity extends Activity
@@ -59,13 +60,22 @@ public class MainActivity extends Activity
     public void onSectionAttached(int number) {
         /*switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
+                ActivitiesController.navigate(this, MainActivity.class);
                 break;
             case 2:
-                mTitle = getString(R.string.title_section2);
+                ActivitiesController.navigate(this, Planning.class);
                 break;
             case 3:
-                mTitle = getString(R.string.title_section3);
+                ActivitiesController.navigate(this, Spectacles.class);
+                break;
+            case 4:
+                ActivitiesController.navigate(this, Service.class);
+                break;
+            case 5:
+                ActivitiesController.navigate(this, Partage.class);
+                break;
+            case 6:
+                ActivitiesController.navigate(this, Divertissement.class);
                 break;
         }*/
     }

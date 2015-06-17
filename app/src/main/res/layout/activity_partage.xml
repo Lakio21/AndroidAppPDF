@@ -65,7 +65,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@+id/btnTwitter"
-            android:background="@drawable/googleplus" />
+            android:background="#000" />
 
         <TextView
             android:id="@+id/tvInfo2"
