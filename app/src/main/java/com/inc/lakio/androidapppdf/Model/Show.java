@@ -6,9 +6,10 @@ import java.util.Date;
 /**
  * Created by Carn on 15/06/2015.
  */
-public class Show extends Entity{
+public class Show extends Entity {
     private long _duration;
     private ArrayList<Representation> _schedules;
+    private Representation selectedSchedule = null;
 
 
     public long getDuration() {
@@ -25,5 +26,13 @@ public class Show extends Entity{
 
     public void setSchedules(ArrayList<Representation> _schedules) {
         this._schedules = _schedules;
+    }
+
+    public void setSelectedSchedule(Representation selectedSchedule) {
+        this.selectedSchedule = selectedSchedule;
+    }
+
+    public Representation getSelectedSchedule() {
+        return selectedSchedule;
     }
 }

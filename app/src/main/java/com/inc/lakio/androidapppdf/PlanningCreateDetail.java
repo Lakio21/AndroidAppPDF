@@ -6,12 +6,26 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.inc.lakio.androidapppdf.Controller.ActivitiesController;
+import com.inc.lakio.androidapppdf.Controller.MainController;
+import com.inc.lakio.androidapppdf.Model.Representation;
+import com.inc.lakio.androidapppdf.Model.Show;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class PlanningCreateDetail extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
+public class PlanningCreateDetail extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
-    private int idSpectacle;
+    private ArrayList<Show> showsList;
+    private ArrayList<Representation> representationList;
+    private Show selectedShow;
+    private Representation selectedSchedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +40,25 @@ public class PlanningCreateDetail extends Activity implements NavigationDrawerFr
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-        refreshLists();
+        ListView listSpectacle = (ListView) findViewById(R.id.listSpectacle);
+        listSpectacle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                refreshHoraire(showsList.get(position).getSchedules());
+            }
+        });
+
+        ListView listHoraire = (ListView) findViewById(R.id.listHoraires);
+        listHoraire.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedSchedule = representationList.get(position);
+            }
+        });
+
+        refreshSpectacles();
+
     }
 
     @Override
@@ -59,25 +91,37 @@ public class PlanningCreateDetail extends Activity implements NavigationDrawerFr
 
     }
 
-    public void onClickAddSpectacle(View view)
-    {
+    public void onClickAddSpectacle(View view) {
+
+        Show add = selectedShow;
+        selectedShow.setSelectedSchedule(selectedSchedule);
+        ActivitiesController.navigate(this, PlanningCreate.class, add);
+    }
+
+
+    public void refreshSpectacles() {
+
+
+        MainController mainController = new MainController();
+
+        showsList = mainController.getGlobalPlanning();
+        ListShowsAdapter adapter = new ListShowsAdapter(this, showsList);
+
+        ListView list = (ListView) findViewById(R.id.listSpectacle);
+        list.setAdapter(adapter);
+
 
     }
 
-    public void refreshLists()
-    {
-        refreshSpectacles();
-        refreshHoraire();
+    public void refreshHoraire(ArrayList<Representation> listSchedule) {
 
-    }
+        representationList = listSchedule;
+        MainController mainController = new MainController();
 
-    public void refreshSpectacles()
-    {
+        showsList = mainController.getGlobalPlanning();
+        ListRepresentationAdapter adapter = new ListRepresentationAdapter(this, listSchedule);
 
-    }
-
-    public void refreshHoraire()
-    {
-
+        ListView listHortaire = (ListView) findViewById(R.id.listHoraires);
+        listHortaire.setAdapter(adapter);
     }
 }

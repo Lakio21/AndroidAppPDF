@@ -8,9 +8,10 @@ import java.util.Date;
 public class Representation {
     private int _idShow;
     private Date _schedule;
+    private String _locationTag;
+    private String _name;
 
-    public Representation(int id, Date d)
-    {
+    public Representation(int id, Date d) {
         _idShow = id;
         _schedule = d;
     }
@@ -29,5 +30,21 @@ public class Representation {
 
     public void setIdShow(int _idShow) {
         this._idShow = _idShow;
+    }
+
+    public void set_locationTag(String _locationTag) {
+        this._locationTag = _locationTag;
+    }
+
+    public void set_name(String _name) {
+        this._name = _name;
+    }
+
+    public String get_locationTag() {
+        return _locationTag;
+    }
+
+    public String get_name() {
+        return _name;
     }
 }
