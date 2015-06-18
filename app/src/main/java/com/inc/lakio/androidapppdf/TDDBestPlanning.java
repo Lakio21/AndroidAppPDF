@@ -26,7 +26,15 @@ public class TDDBestPlanning {
         Long continu = startDate;
         Long end = endDate;
         boolean processEnd = false;
-
+        Representation midi = new Representation();
+        Representation soir = new Representation();
+        Date dt = new Date();
+        dt.setTime(39600);
+        midi.setSchedule(dt);
+        midi = transformeDate(midi);
+        dt.setTime(69300);
+        soir.setSchedule(dt);
+        soir = transformeDate(soir);
         //endregion
         //shows.getAll();
 
@@ -42,6 +50,9 @@ public class TDDBestPlanning {
         boolean firstStep = true;
         double lastLatitude = 0;
         double lastLongitude = 0;
+        boolean repasMidi = false;
+        boolean repasSoir = false;
+        int cmpShow = 0;
         while (!processEnd)
         {
             int showChose = 0;
@@ -57,7 +68,7 @@ public class TDDBestPlanning {
                 if (!firstStep)
                 {
                     moveTime = pointToPointDistance(lastLatitude,shows.get(i).getLatitude(),lastLongitude,shows.get(i).getLongitude());
-                    moveTime = moveTime*6000;
+                    moveTime = moveTime*60;
                 }
 
                 for (int j = 0; j < rps.size(); j++)
@@ -84,10 +95,27 @@ public class TDDBestPlanning {
             }
             continu = continu + tmpTime;
             continu = continu + moveTime;
-            continu = continu + shows.get(showChose).getDuration()*6000;
+            continu = continu + shows.get(showChose).getDuration()*60;
+
+            if (!repasMidi && midi.getSchedule().getTime() <= continu)
+            {
+                continu = continu + 3600;
+                repasMidi = true;
+            }
+            if (!repasSoir && soir.getSchedule().getTime() <= continu)
+            {
+                continu = continu + 3600;
+                repasSoir = true;
+            }
             if (continu >= endDate)
             {
                 processEnd = true;
+            }
+            cmpShow += 1;
+            if (cmpShow >= 2) // pause de 15 minutes
+            {
+                continu = continu + 900;
+                cmpShow = 0;
             }
             shows.remove(showChose);
         }

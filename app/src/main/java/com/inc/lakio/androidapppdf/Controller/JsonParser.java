@@ -72,7 +72,7 @@ public class JsonParser {
                         JSONObject obj = null;
                                 obj = schedules.getJSONObject(j);
                         Date d = new Date();
-                        d.setTime(obj.getLong("time")*1000);
+                        d.setTime(obj.getLong("time") * 1000);
                         Representation representation = new Representation(show.getId(), d);
                         representation.set_locationTag(show.getLocationTag());
                         representation.set_name(show.getName());
@@ -164,7 +164,18 @@ public class JsonParser {
         return obj.toString();
     }
 
-    public String parsePlanningToJson(Planning planing) {
-        return "";
+    public String parsePlanningToJson(Planning planing)
+    {
+        JSONObject obj = new JSONObject();
+
+        try {
+            obj.put("start",planing.getStartAt().getTime());
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
+        return obj.toString();
     }
 }

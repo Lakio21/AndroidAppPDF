@@ -13,6 +13,7 @@ public class Representation {
     private String _locationTag;
     private String _name;
 
+    public Representation(){}
     public Representation(int id, Date d) {
         _idShow = id;
         _schedule = d;
