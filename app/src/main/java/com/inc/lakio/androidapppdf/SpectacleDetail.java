@@ -5,27 +5,16 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
-import com.inc.lakio.androidapppdf.Controller.MainController;
-import com.inc.lakio.androidapppdf.Model.Representation;
-import com.inc.lakio.androidapppdf.Model.Show;
-import com.inc.lakio.androidapppdf.R;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
-public class Spectacles extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class SpectacleDetail extends Activity {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
-    MainController mainController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spectacles);
+        setContentView(R.layout.activity_spectacle_detail);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.navigation_drawer);
@@ -34,14 +23,12 @@ public class Spectacles extends Activity implements NavigationDrawerFragment.Nav
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
-        refreshPlanningList();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_spectacles, menu);
+        getMenuInflater().inflate(R.menu.menu_spectacle_detail, menu);
         return true;
     }
 
@@ -58,21 +45,5 @@ public class Spectacles extends Activity implements NavigationDrawerFragment.Nav
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
-
-    }
-
-    public void refreshPlanningList() {
-
-        mainController = new MainController();
-
-        ListShowsAdapter adapter = new ListShowsAdapter(this, mainController.getGlobalPlanning());
-
-        ListView list = (ListView)findViewById(R.id.listPlanning);
-        list.setAdapter(adapter);
-
     }
 }

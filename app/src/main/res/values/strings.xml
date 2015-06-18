@@ -10,22 +10,24 @@
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
-    <string name="title_activity_stub"/>
-    <string name="title_activity_global_planning"/>
-    <string name="title_activity_spectacles"/>
-    <string name="title_activity_services"/>
-    <string name="title_activity_partage"/>
-    <string name="title_activity_divertissement"/>
-    <string name="title_activity_planning_creation"/>
-    <string name="title_activity_planning_view"/>
-    <string name="title_activity_planning_create"/>
-    <string name="title_activity_planning_create_detail"/>
-    <string name="title_activity_planning"/>
+    <string name="title_activity_stub" />
+    <string name="title_activity_global_planning" />
+    <string name="title_activity_spectacles" />
+    <string name="title_activity_services" />
+    <string name="title_activity_partage" />
+    <string name="title_activity_divertissement" />
+    <string name="title_activity_planning_creation" />
+    <string name="title_activity_planning_view" />
+    <string name="title_activity_planning_create" />
+    <string name="title_activity_planning_create_detail" />
+    <string name="title_activity_planning" />
+    <string name="title_activity_spectacle_detail" />
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+
 
 </resources>
