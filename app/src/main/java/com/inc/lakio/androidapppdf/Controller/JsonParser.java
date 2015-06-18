@@ -74,6 +74,8 @@ public class JsonParser {
                         Date d = new Date();
                         d.setTime(obj.getLong("time")*1000);
                         Representation representation = new Representation(show.getId(), d);
+                        representation.set_locationTag(show.getLocationTag());
+                        representation.set_name(show.getName());
                         representationList.add(representation);
                     }
 
