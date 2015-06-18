@@ -17,7 +17,7 @@ public class Restaurant extends Service
         this._menus = _menus;
     }
 
-    public void setMenu(Menu _menu) {
+    public void setOneMenu(Menu _menu) {
         this._menus.add(_menu);
     }
 }

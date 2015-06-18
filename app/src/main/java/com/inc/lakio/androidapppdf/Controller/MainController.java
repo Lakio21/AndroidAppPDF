@@ -20,8 +20,6 @@ public class MainController {
     JsonParser _jsonParser;
     PlanningController _planningControler;
 
-    ArrayList<Show> showsArrayList;
-
     public MainController()
     {
         _jsonParser = new JsonParser();
@@ -29,7 +27,7 @@ public class MainController {
 
     public ArrayList<Show> getGlobalPlanning(){
 
-        showsArrayList = new ArrayList<>();
+        ArrayList<Show> showsArrayList = new ArrayList<>();
 
         String result = null;
         try {
