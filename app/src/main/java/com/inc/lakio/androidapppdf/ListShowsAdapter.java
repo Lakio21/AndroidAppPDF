@@ -71,11 +71,14 @@ public class ListShowsAdapter extends BaseAdapter {
                 Horaire += c.get(Calendar.HOUR_OF_DAY);
                 Horaire += ":";
                 Horaire += c.get(Calendar.MINUTE);
-                Horaire += " - ";
-                //schedules += shows.get(position).getSchedules().get(i).getSchedule().getHours() + " - ";
+                if (c.get(Calendar.MINUTE) == 0)
+                {
+                    Horaire += "0 - ";
+                }
+                else {
+                    Horaire += " - ";
+                }
             }
-
-            //schedules = schedules.substring(1, schedules.length() - 3);
 
 
             text1.setText(shows.get(position).getName() + " - Emplacement " + shows.get(position).getLocationTag());

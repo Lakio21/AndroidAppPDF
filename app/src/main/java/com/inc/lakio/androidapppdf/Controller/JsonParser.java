@@ -35,7 +35,7 @@ public class JsonParser {
 
     public ArrayList<Show> parseToShows(String jsonString) {
         ArrayList<Show> resultList = new ArrayList<>();
-        ArrayList<Representation> representationList = new ArrayList<>();
+        ArrayList<Representation> representationList = null;
 
         JSONArray json;
 
@@ -46,6 +46,7 @@ public class JsonParser {
                 json = new JSONArray(jsonString);
 
                 for (int i = 0; i < json.length(); i++) {
+                    representationList = new ArrayList<>();
                     JSONObject item = null;
                             item = json.getJSONObject(i);
                     Show show = new Show();
