@@ -37,23 +37,25 @@ public class JsonParser {
         ArrayList<Show> resultList = new ArrayList<>();
         ArrayList<Representation> representationList = new ArrayList<>();
 
-        JSONArray json = null;
+        JSONArray json;
 
         if (jsonString != null) {
 
             try {
-
+                json = null;
                 json = new JSONArray(jsonString);
 
                 for (int i = 0; i < json.length(); i++) {
-                    JSONObject item = json.getJSONObject(i);
+                    JSONObject item = null;
+                            item = json.getJSONObject(i);
                     Show show = new Show();
                     show.setId(item.getInt("id"));
                     show.setName(item.getString("name"));
                     show.setDescription(item.getString("description"));
                     show.setAverageNote(item.getDouble("averageNote"));
                     show.setTotalVote(item.getInt("totalVote"));
-                    JSONObject t = new JSONObject(item.getString("location"));
+                    JSONObject t = null;
+                            t = new JSONObject(item.getString("location"));
 
                     show.setLocationTag(t.getString("tag"));
                     show.setLongitude(t.getDouble("longitude"));
@@ -62,10 +64,12 @@ public class JsonParser {
                     show.setDuration(item.getLong("duration"));
 
 
-                    JSONArray schedules = new JSONArray(item.getString("schedulesList"));
+                    JSONArray schedules = null;
+                            schedules = new JSONArray(item.getString("schedulesList"));
 
                     for (int j = 0; j < schedules.length(); j++) {
-                        JSONObject obj = schedules.getJSONObject(j);
+                        JSONObject obj = null;
+                                obj = schedules.getJSONObject(j);
                         Date d = new Date();
                         d.setTime(obj.getLong("time")*1000);
                         Representation representation = new Representation(show.getId(), d);
