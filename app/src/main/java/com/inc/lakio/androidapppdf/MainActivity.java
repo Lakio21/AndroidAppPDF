@@ -8,6 +8,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.inc.lakio.androidapppdf.Controller.ActivitiesController;
@@ -48,6 +51,7 @@ public class MainActivity extends Activity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
@@ -55,29 +59,11 @@ public class MainActivity extends Activity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
+
     }
 
     public void onSectionAttached(int number) {
-        /*switch (number) {
-            case 1:
-                ActivitiesController.navigate(this, MainActivity.class);
-                break;
-            case 2:
-                ActivitiesController.navigate(this, Planning.class);
-                break;
-            case 3:
-                ActivitiesController.navigate(this, Spectacles.class);
-                break;
-            case 4:
-                ActivitiesController.navigate(this, Service.class);
-                break;
-            case 5:
-                ActivitiesController.navigate(this, Partage.class);
-                break;
-            case 6:
-                ActivitiesController.navigate(this, Divertissement.class);
-                break;
-        }*/
+
     }
 
     public void restoreActionBar() {
@@ -101,43 +87,36 @@ public class MainActivity extends Activity
         return super.onCreateOptionsMenu(menu);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 
-    public void onClickPlanning(View view)
-    {
+    public void onClickPlanning(View view) {
         ActivitiesController.navigate(this, Planning.class);
     }
 
-    public void onClickSpectacles(View view)
-    {
+    public void onClickSpectacles(View view) {
         ActivitiesController.navigate(this, Spectacles.class);
     }
 
-    public void onClickServices(View view)
-    {
+    public void onClickServices(View view) {
         ActivitiesController.navigate(this, Services.class);
     }
 
-    public void onClickDivertissement(View view)
-    {
+    public void onClickDivertissement(View view) {
         ActivitiesController.navigate(this, Divertissement.class);
     }
 
-    public void onClickPartage(View view)
-    {
+    public void onClickPartage(View view) {
         ActivitiesController.navigate(this, Partage.class);
     }
 
@@ -180,5 +159,6 @@ public class MainActivity extends Activity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
 
 }

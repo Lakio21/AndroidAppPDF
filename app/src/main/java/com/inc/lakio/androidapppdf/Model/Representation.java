@@ -1,6 +1,8 @@
 package com.inc.lakio.androidapppdf.Model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Carn on 16/06/2015.
@@ -46,5 +48,12 @@ public class Representation {
 
     public String get_name() {
         return _name;
+    }
+
+    public boolean isPassed()
+    {
+        Calendar validDate = new GregorianCalendar();
+        validDate.setTime(_schedule);
+        return Calendar.getInstance().after(validDate);
     }
 }

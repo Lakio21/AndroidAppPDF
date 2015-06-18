@@ -25,6 +25,9 @@ public class Services extends Activity implements NavigationDrawerFragment.Navig
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        RadioButton rbRestaurant = (RadioButton) findViewById(R.id.rBtnRestaurant);
+        rbRestaurant.setChecked(true);
     }
 
     @Override
@@ -73,6 +76,12 @@ public class Services extends Activity implements NavigationDrawerFragment.Navig
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+    }
+
+    public void refreshServices (String type)
+    {
+
 
     }
 }

@@ -86,7 +86,7 @@ public class MainController {
         }
 
         try {
-            RequestManager.getInstance().post("/vote", _jsonParser.parseVoteToJson(entity.getId(), type, vote));
+            RequestManager.getInstance().post("vote", _jsonParser.parseVoteToJson(entity.getId(), type, vote));
         } catch (IOException | ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }

@@ -16,25 +16,137 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
-            android:text="Puy Du Fou"
+            android:gravity="center"
+            android:text="Nom du spectacle"
             android:textColor="@color/titleColor"
-            android:textSize="@dimen/title_main_size" />
+            android:textSize="40dp" />
+
+        <TextView
+            android:id="@+id/tvDuree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTitle"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:text="Durée :"
+            android:textSize="25dp" />
 
         <Button
             android:id="@+id/btnPlanning"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_below="@+id/tvTitle"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="69dp"
+            android:layout_marginRight="10dp"
             android:width="300dp"
             android:background="@color/buttonBackgroudColor"
-            android:onClick="onClickPlanning"
-            android:text="Planning"
+            android:onClick="onClickAnecdote"
+            android:text="Anecdote"
             android:textColor="@color/buttonTextColor"
             android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvHoraire"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDuree"
+            android:layout_marginLeft="10dp"
+            android:text="Horaire :"
+            android:textSize="25dp" />
+
+        <GridView
+            android:id="@+id/gridView"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp"
+            android:layout_below="@id/tvHoraire"
+            android:columnWidth="100dp"
+            android:gravity="center"
+            android:horizontalSpacing="1dp"
+            android:numColumns="auto_fit"
+            android:stretchMode="none"
+            android:verticalSpacing="1dp"></GridView>
+
+        <TextView
+            android:id="@+id/tvDescriptionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gridView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Description :"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDescriptionTitle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/tvEmplacement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDescription"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Emplacement :"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/tvNoteMoyenne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvEmplacement"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Note moyenne :"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/tvVote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvNoteMoyenne"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Voter :"
+            android:textSize="25dp" />
+
+        <EditText
+            android:id="@+id/tbVote"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tvVote"
+            android:layout_toEndOf="@+id/tvVote" />
+
+        <TextView
+            android:id="@+id/tvNoteMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tbVote"
+            android:layout_toEndOf="@+id/tbVote"
+            android:text="/5"
+            android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/btnVote"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:width="300dp"
+            android:background="@color/buttonBackgroudColor"
+            android:onClick="onClickVoter"
+            android:text="Voter"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20dp"
+            android:layout_alignBottom="@+id/tbVote"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

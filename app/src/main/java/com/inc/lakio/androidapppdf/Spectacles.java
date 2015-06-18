@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.inc.lakio.androidapppdf.Controller.ActivitiesController;
 import com.inc.lakio.androidapppdf.Controller.MainController;
 import com.inc.lakio.androidapppdf.Model.Representation;
 import com.inc.lakio.androidapppdf.Model.Show;
@@ -21,6 +24,8 @@ public class Spectacles extends Activity implements NavigationDrawerFragment.Nav
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     MainController mainController;
+    ListView listSpectacle;
+    ArrayList<Show> listShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,16 @@ public class Spectacles extends Activity implements NavigationDrawerFragment.Nav
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        listSpectacle = (ListView) findViewById(R.id.listPlanning);
+        listSpectacle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                ActivitiesController.navigate(view.getContext(), SpectacleDetail.class, listShow.get(position));
+            }
+        });
+
 
         refreshPlanningList();
     }
@@ -69,7 +84,8 @@ public class Spectacles extends Activity implements NavigationDrawerFragment.Nav
 
         mainController = new MainController();
 
-        ListShowsAdapter adapter = new ListShowsAdapter(this, mainController.getGlobalPlanning());
+        listShow = mainController.getGlobalPlanning();
+        ListShowsAdapter adapter = new ListShowsAdapter(this, listShow);
 
         ListView list = (ListView)findViewById(R.id.listPlanning);
         list.setAdapter(adapter);

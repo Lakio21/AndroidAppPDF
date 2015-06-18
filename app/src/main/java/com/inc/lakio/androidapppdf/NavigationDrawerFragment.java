@@ -20,7 +20,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.inc.lakio.androidapppdf.Controller.ActivitiesController;
+import com.inc.lakio.androidapppdf.Model.Service;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -76,7 +80,7 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         // Select either the default item (0) or the last selected item.
-        selectItem(mCurrentSelectedPosition);
+        //selectItem(mCurrentSelectedPosition);
     }
 
     @Override
@@ -193,6 +197,30 @@ public class NavigationDrawerFragment extends Fragment {
 
     private void selectItem(int position) {
         mCurrentSelectedPosition = position;
+
+        switch (position) {
+            case 0:
+                ActivitiesController.navigate(getActivity(), MainActivity.class);
+                break;
+            case 1:
+                ActivitiesController.navigate(getActivity(), Planning.class);
+                break;
+            case 2:
+                ActivitiesController.navigate(getActivity(), Spectacles.class);
+                break;
+            case 3:
+                ActivitiesController.navigate(getActivity(), Services.class);
+                break;
+            case 4:
+                ActivitiesController.navigate(getActivity(), Divertissement.class);
+                break;
+            case 5:
+                ActivitiesController.navigate(getActivity(), Partage.class);
+                break;
+            default:
+                break;
+        }
+
         if (mDrawerListView != null) {
             mDrawerListView.setItemChecked(position, true);
         }
@@ -202,6 +230,7 @@ public class NavigationDrawerFragment extends Fragment {
         if (mCallbacks != null) {
             mCallbacks.onNavigationDrawerItemSelected(position);
         }
+
     }
 
     @Override
@@ -283,4 +312,5 @@ public class NavigationDrawerFragment extends Fragment {
 
         void onNavigationDrawerItemSelected(int position);
     }
+
 }

@@ -72,7 +72,6 @@ public class ListRepresentationAdapter extends BaseAdapter {
                 Horaire += "0";
             }
 
-
             item.setText(Horaire);
         } else {
             item.setText("Impossible de remplir la liste - Réessayer plus tard");

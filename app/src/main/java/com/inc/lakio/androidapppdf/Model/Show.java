@@ -1,7 +1,9 @@
 package com.inc.lakio.androidapppdf.Model;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Carn on 15/06/2015.
@@ -35,4 +37,5 @@ public class Show extends Entity {
     public Representation getSelectedSchedule() {
         return selectedSchedule;
     }
+
 }

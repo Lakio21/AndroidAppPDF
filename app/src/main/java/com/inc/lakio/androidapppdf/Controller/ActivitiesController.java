@@ -15,12 +15,14 @@ public final class ActivitiesController
         Entity _entity = e;
         Intent _i = new Intent(source, arrival);
         _i.putExtra("entityObject", _entity);
+        _i.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         source.startActivity(_i);
     }
 
     public static void navigate(Context source, Class<?> arrival)
     {
         Intent _i = new Intent(source, arrival);
+        _i.setFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         source.startActivity(_i);
     }
 
