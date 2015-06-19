@@ -45,6 +45,7 @@ public class PlanningCreateDetail extends Activity implements NavigationDrawerFr
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                selectedShow = showsList.get(position);
                 refreshHoraire(showsList.get(position).getSchedules());
             }
         });

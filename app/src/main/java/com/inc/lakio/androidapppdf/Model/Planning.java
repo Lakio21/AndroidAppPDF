@@ -13,6 +13,11 @@ public class Planning {
     private ArrayList<Representation> _representationList;
     private String _loginUser;
 
+    public Planning()
+    {
+        _representationList = new ArrayList<>();
+    }
+
     public int getId() {
         return _id;
     }

@@ -1,5 +1,6 @@
 package com.inc.lakio.androidapppdf.Model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -7,7 +8,7 @@ import java.util.GregorianCalendar;
 /**
  * Created by Carn on 16/06/2015.
  */
-public class Representation {
+public class Representation implements Serializable{
     private int _idShow;
     private Date _schedule;
     private String _locationTag;

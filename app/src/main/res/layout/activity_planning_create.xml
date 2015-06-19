@@ -23,7 +23,7 @@
         <ListView
             android:id="@+id/listRepresentation"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:layout_below="@+id/tvTitle"
             android:layout_marginTop="70dp"
             android:choiceMode="singleChoice" />
@@ -39,6 +39,36 @@
             android:onClick="onClickCreatePlanning"
             android:background="@drawable/circle"
             android:src="@drawable/ic_plus" />
+
+        <Button
+            android:id="@+id/btnBestPlanning"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/tvTitle"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="200dp"
+            android:width="300dp"
+            android:background="@color/buttonBackgroudColor"
+            android:onClick="onClickBestPlanning"
+            android:text="Best Planning"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btnCreerCustomPlanning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listRepresentation"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:width="300dp"
+            android:background="@color/buttonBackgroudColor"
+            android:onClick="onClickCreate"
+            android:text="Créer"
+            android:textColor="@color/buttonTextColor"
+            android:textSize="20dp" />
 
 
     </RelativeLayout>

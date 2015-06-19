@@ -12,15 +12,18 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.inc.lakio.androidapppdf.Controller.ActivitiesController;
-import com.inc.lakio.androidapppdf.Model.Representation;
-import com.inc.lakio.androidapppdf.Model.Show;
+import com.inc.lakio.androidapppdf.Controller.MainController;
+import com.inc.lakio.androidapppdf.Model.*;
+import com.inc.lakio.androidapppdf.Model.Planning;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
-public class PlanningCreate extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
+public class PlanningCreate extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
+    MainController mainController;
     private ArrayList<Show> representationList;
 
     @Override
@@ -41,11 +44,16 @@ public class PlanningCreate extends Activity implements NavigationDrawerFragment
 
         Intent intent = getIntent();
 
-        if(intent != null)
-        {
-            if(representationList != null) {
+        if (representationList == null) {
+            representationList = new ArrayList<>();
+        }
+
+        if (intent != null) {
+            if (intent.getSerializableExtra("entityObject") != null) {
                 representationList.add((Show) intent.getSerializableExtra("entityObject"));
-                listPlanning.getAdapter().notify();
+                listPlanning.setAdapter(new ListPlanningAdapter(this, representationList));
+                //listPlanning.getAdapter().notify();
+
             }
         }
     }
@@ -56,8 +64,8 @@ public class PlanningCreate extends Activity implements NavigationDrawerFragment
 
         SavedInstanceState.putSerializable("listPlanning", representationList);
     }
-    public void onRestoreInstanceState(Bundle savedInstanceState)
-    {
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
             representationList = (ArrayList<Show>) savedInstanceState.getSerializable("listPlanning");
@@ -91,8 +99,28 @@ public class PlanningCreate extends Activity implements NavigationDrawerFragment
 
     }
 
-    public void onClickCreatePlanning(View view)
-    {
+    public void onClickCreatePlanning(View view) {
         ActivitiesController.navigate(this, PlanningCreateDetail.class);
+    }
+
+    public void onClickBestPlanning(View view)
+    {
+
+
+    }
+
+    public void onClickCreate(View view)
+    {
+        mainController = new MainController();
+        com.inc.lakio.androidapppdf.Model.Planning plan = new Planning();
+        plan.setId(1);
+        plan.setStartAt(new Date());
+        Representation r = new Representation();
+        r.setIdShow(representationList.get(0).getId());
+        r.set_name(representationList.get(0).getName());
+        r.set_locationTag(representationList.get(0).getLocationTag());
+        r.setSchedule(representationList.get(0).getSelectedSchedule().getSchedule());
+        plan.setOneRepresentationList(r);
+        mainController.setCustomPlanning(plan, this);
     }
 }
