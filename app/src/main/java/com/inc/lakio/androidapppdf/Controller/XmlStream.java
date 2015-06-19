@@ -51,7 +51,9 @@ public class XmlStream
         }
         catch (Exception e) {
         e.printStackTrace();
-        } finally {
+        }
+        finally
+        {
             if (writer != null) {
                 try {
                     writer.close();

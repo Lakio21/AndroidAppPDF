@@ -43,12 +43,13 @@ public class MainController {
         return showsArrayList;
     }
 
-    public Planning getCustomPlanning (Context c)
+    public ArrayList<Representation> getCustomPlanning (Context c)
     {
         _planningControler = new PlanningController();
         Planning p = _planningControler.getSavedPlanning("CustomPlanning",c);
 
-        return p;
+
+        return p.getRepresentationList();
     }
 
     public Boolean setCustomPlanning(Planning planning,Context c){

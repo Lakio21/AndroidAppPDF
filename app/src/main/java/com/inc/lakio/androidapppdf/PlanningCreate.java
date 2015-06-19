@@ -121,6 +121,7 @@ public class PlanningCreate extends Activity implements NavigationDrawerFragment
         r.set_locationTag(representationList.get(0).getLocationTag());
         r.setSchedule(representationList.get(0).getSelectedSchedule().getSchedule());
         plan.setOneRepresentationList(r);
-        mainController.setCustomPlanning(plan, this);
+        boolean test = mainController.setCustomPlanning(plan, this);
+
     }
 }

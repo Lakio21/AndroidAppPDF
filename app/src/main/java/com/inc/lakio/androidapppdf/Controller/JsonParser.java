@@ -138,6 +138,8 @@ public class JsonParser {
                 Date d = new Date();
                 d.setTime(item.getLong("schedule"));
                 Representation representation = new Representation(item.getInt("idShow"), d);
+                representation.set_name(item.getString("name"));
+                representation.set_locationTag(item.getString("location"));
 
                 resultList.add(representation);
             }
@@ -170,7 +172,7 @@ public class JsonParser {
 
         try {
             obj.put("start",planing.getStartAt().getTime());
-            obj.put("stop",planing.getEndAt().getTime());
+            //obj.put("stop",planing.getEndAt().getTime());
             obj.put("login",planing.getLoginUser());
             JSONArray _array = new JSONArray();
             for (int i = 0; i<planing.getRepresentationList().size();i++)
