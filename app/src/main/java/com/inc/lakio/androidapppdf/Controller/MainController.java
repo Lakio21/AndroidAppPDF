@@ -1,5 +1,7 @@
 package com.inc.lakio.androidapppdf.Controller;
 
+import android.content.Context;
+
 import com.inc.lakio.androidapppdf.Model.Entity;
 import com.inc.lakio.androidapppdf.Model.Planning;
 import com.inc.lakio.androidapppdf.Model.Representation;
@@ -41,19 +43,19 @@ public class MainController {
         return showsArrayList;
     }
 
-    public Planning getCustomPlanning ()
+    public Planning getCustomPlanning (Context c)
     {
         _planningControler = new PlanningController();
-        Planning p = _planningControler.getSavedPlanning();
+        Planning p = _planningControler.getSavedPlanning("CustomPlanning",c);
 
         return p;
     }
 
-    public Boolean setCustomPlanning(ArrayList<Representation> representations){
+    public Boolean setCustomPlanning(Planning planning,Context c){
 
         _planningControler = new PlanningController();
-        String result = _planningControler.saveCustomPlanning(representations);
-        if (result.equals("")) {
+        return  _planningControler.saveCustomPlanning(planning,"CustomPlanning",c);
+        /*if (result) {
             return false;
         }
         else
@@ -64,7 +66,7 @@ public class MainController {
                 e.printStackTrace();
             }
             return true;
-        }
+        }*/
 
     }
 

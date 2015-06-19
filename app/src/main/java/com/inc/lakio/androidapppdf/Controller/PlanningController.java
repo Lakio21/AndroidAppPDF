@@ -1,5 +1,6 @@
 package com.inc.lakio.androidapppdf.Controller;
 
+import android.content.Context;
 import android.text.format.Time;
 
 import com.inc.lakio.androidapppdf.Model.Planning;
@@ -22,32 +23,24 @@ public class PlanningController {
     private JsonParser _jsonParser;
     private XmlStream _xmlStream;
 
-    public String saveCustomPlanning(ArrayList<Representation> representations) {
-        String result = "";
+    public Boolean saveCustomPlanning(Planning _planning,String _fileName,Context c) {
         try {
-            Planning planning = new Planning();
-            planning.setRepresentationList(representations);
-            planning.setStartAt(representations.get(1).getSchedule());
-            planning.setEndAt(representations.get(representations.size() - 1)
-                    .getSchedule());
-            planning.setLoginUser(User.getInstance().getLogin());
             _jsonParser = new JsonParser();
-            String tmp = _jsonParser.parsePlanningToJson(planning);
+            String tmp = _jsonParser.parsePlanningToJson(_planning);
             _xmlStream = new XmlStream();
-            if (_xmlStream.setPlanningInfo(tmp)) {
-                result = tmp;
-                return result;
+            if (_xmlStream.setPlanningInfo(tmp,_fileName,c)) {
+                return true;
             } else {
-                return result;
+                return false;
             }
         } catch (Exception e) {
             return null;
         }
     }
 
-    public Planning getSavedPlanning() {
+    public Planning getSavedPlanning(String _fileName, Context c) {
         _xmlStream = new XmlStream();
-        String tmp = _xmlStream.getPlanningInfo();
+        String tmp = _xmlStream.getPlanningInfo(_fileName, c);
         _jsonParser = new JsonParser();
         return _jsonParser.parseToPlanning(tmp);
 

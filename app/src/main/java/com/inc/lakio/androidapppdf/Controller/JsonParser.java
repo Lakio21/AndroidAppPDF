@@ -170,6 +170,20 @@ public class JsonParser {
 
         try {
             obj.put("start",planing.getStartAt().getTime());
+            obj.put("stop",planing.getEndAt().getTime());
+            obj.put("login",planing.getLoginUser());
+            JSONArray _array = new JSONArray();
+            for (int i = 0; i<planing.getRepresentationList().size();i++)
+            {
+                Representation tmp = planing.getRepresentationList().get(i);
+                JSONObject jsontmp = new JSONObject();
+                jsontmp.put("location",tmp.get_locationTag());
+                jsontmp.put("name",tmp.get_name());
+                jsontmp.put("idshow",tmp.getIdShow());
+                jsontmp.put("horaire",tmp.getSchedule());
+                _array.put(jsontmp);
+            }
+            obj.put("representation",_array);
         }
         catch (JSONException e)
         {
